@@ -1,0 +1,111 @@
+/** Janice Martyres
+ * Assignment #2: Java Class
+ * Shopping Catalog
+ * Date Due: March 15th
+ * LTU HONOR CODE:
+ * 1
+ * 
+ * "I have neither given nor received unauthorized aid in completing this work, nor have I presented someone else's work as my own."
+ */
+package shopcatalog;
+import java.util.Scanner;
+
+/**
+ *
+ * @author jmartyres
+ */
+public class ShopCatalog {
+
+    // Changed catalog to array
+    private static String[] products = {"Tacos\t", "Hot Coffee\t", "Pad Thai\t",};
+    private static double[] prices = {3.69, 4.99, 8.99,};
+    private static String[] about = {"Spicy Chicken Wrapped in Hard Shell", "Creamy Organic Chocolate", "A Thai Noodle Favorite", };
+    
+    private static void catalog() {
+        System.out.println("----------------------");
+        System.out.println("#\tProducts\t\tPrices\tAbout");
+        
+        for (int i = 0; i < products.length; i++) {
+        System.out.print((i + 1) + ".\t" + products [i] + "\t$");
+        System.out.printf("%.2f", prices[i]);
+        System.out.print("\t" + about[i] + "\n");
+
+    }
+    }
+    
+    
+
+   //  static int answer; 
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+
+        
+     Scanner s = new Scanner(System.in);
+     int[] orderCat = new int[100];
+     int[] quantity = new int[100];
+     int i = 0, j = 0;
+     double ftotal = 0;
+     boolean[] tenDis = new boolean[100];
+     String reply;
+     
+     // ABOVE is the scanner for the discount in new assignment
+     
+     
+     System.out.println();
+     catalog();
+     do {
+         do {
+             System.out.print("Enter the number of the product you want: ");
+             orderCat[i] = s.nextInt() - 1;
+             
+         } while (orderCat[i] < 0 || orderCat[i] >= products.length);
+         do {
+             System.out.print("What is the quantity of items?: ");
+             quantity[i] = s.nextInt();
+             if (quantity[i]>9) {
+                 tenDis[i]=true;
+             }
+                
+         } while (quantity[i] < 1);
+         i++;
+         s.nextLine();
+         System.out.print("Press 1 to continue shopping. Press 0 to stop.");
+         reply = s.nextLine();
+         
+     } while (reply.equalsIgnoreCase("1"));
+     
+     for (int k = 0; k < orderCat.length; k++) {
+         if (prices[i] != 0 && !tenDis[i]) {
+             ftotal = ftotal + (prices[orderCat[k]] * quantity[k]);
+         }
+         else if (prices[i] != 0) {
+             ftotal = ftotal + ((prices[orderCat[k]] * quantity[k]) * 0.90);
+         }
+     }
+     
+    // calculations for discount ABOVE
+    
+   //
+   
+   //
+   
+   do {
+       if (tenDis[j]) {
+           System.out.printf(quantity[j] + products[orderCat[j]] + " = $%.2f", quantity[j] * prices[orderCat[j]]);
+           System.out.print(quantity[j] * prices[orderCat[j]]*0.10);
+       } else {
+           System.out.print(quantity[j] + products[orderCat[j]] + " = $.2f");
+           
+       }
+       System.out.println();
+       j++;
+       
+   } while (orderCat[j] != 0); 
+        System.out.printf("Order total is: $%.2f", ftotal * 1.06);
+        System.out.println();
+       
+      
+} // the bill
+} // the class
